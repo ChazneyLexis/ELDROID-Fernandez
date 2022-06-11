@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "2498450888",
+    "project_id": "movie-details-eldroid",
+    "storage_bucket": "movie-details-eldroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2498450888:android:29218e495683e861cadcfd",
+        "android_client_info": {
+          "package_name": "com.example.eldroid_fernandez"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "2498450888-g3khiq4b6mt360r9u2il6apu39mliuud.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9imPC5koJvlqeJmnilv3FWR5rZ0koiHY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "2498450888-g3khiq4b6mt360r9u2il6apu39mliuud.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2498450888:android:a180cf2b1b67b76ecadcfd",
+        "android_client_info": {
+          "package_name": "com.example.fernandez_projectforfinals_eldroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "2498450888-g3khiq4b6mt360r9u2il6apu39mliuud.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9imPC5koJvlqeJmnilv3FWR5rZ0koiHY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "2498450888-g3khiq4b6mt360r9u2il6apu39mliuud.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
