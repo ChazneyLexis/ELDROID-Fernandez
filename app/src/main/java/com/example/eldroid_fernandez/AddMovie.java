@@ -131,12 +131,12 @@ public class AddMovie extends AppCompatActivity {
             public void onComplete(@NonNull Task<Uri> task) {
                 if (task.isSuccessful()) {
                     Uri downloadUri = task.getResult();
-                    Movie movie = new Movie(id, Title, ReleaseDate, Year, RunTime, Language, Country,downloadUri.toString());
-                    db.collection("Games").document(id).set(movie).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    Movie movie = new Movie(id, Title, Year, RunTime, Language, Country, ReleaseDate,downloadUri.toString());
+                    db.collection("Movie").document(id).set(movie).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
-                                Toast.makeText(AddMovie.this, "Game successfully added!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AddMovie.this, "Movie successfully added!", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                                 startActivity(new Intent(getApplicationContext(),ViewAll.class));
                             }

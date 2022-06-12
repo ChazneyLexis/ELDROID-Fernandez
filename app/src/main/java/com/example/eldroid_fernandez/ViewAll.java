@@ -30,14 +30,14 @@ public class ViewAll extends AppCompatActivity {
         listAdapter = new MovieAdapt(movieList, this);
         movieListView = findViewById(R.id.movieListView);
         movieListView.setAdapter(listAdapter);
-        getGames();
+        getMovie();
     }
 
-    private void getGames() {
+    private void getMovie() {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        db.collection("Games")
+        db.collection("Movie")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

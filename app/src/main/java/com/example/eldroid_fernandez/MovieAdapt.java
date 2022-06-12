@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,8 +56,9 @@ public class MovieAdapt extends BaseAdapter {
         String myFormat = "MM/dd/yy";
         SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US);
         view = LayoutInflater.from(context).inflate(R.layout.movielistitem, null);
-        ImageView editIB, deleteIB, image;
-        TextView movID, movTitle, movYear, movCount, movReleasedD, movRunT, movLanguage;
+        ImageView image;
+        Button editIB, deleteIB;
+        TextView movTitle, movYear, movCount, movReleasedD, movRunT, movLanguage;
         editIB = view.findViewById(R.id.editIB);
         deleteIB = view.findViewById(R.id.deleteIB);
         movTitle = view.findViewById(R.id.movTitle);
@@ -68,7 +70,7 @@ public class MovieAdapt extends BaseAdapter {
         image = view.findViewById(R.id.image);
         Glide.with(context).load(movieList.get(i).getImage()).into(image);
         movTitle.setText("Title: " + movieList.get(i).getMovTit());
-        movReleasedD.setText("Released Date: " + dateFormat.format(movieList.get(i).getMovReleaseD().toDate()));
+        movReleasedD.setText("Released Date: " + movieList.get(i)!=null?dateFormat.format(movieList.get(i).getMovReleaseD().toDate()):"");
         movYear.setText("Year: " + movieList.get(i).getMovYear());
         movCount.setText("Country: " + movieList.get(i).getMovCount());
         movRunT.setText("Running Time: " + movieList.get(i).getMovRunT());
@@ -90,13 +92,13 @@ public class MovieAdapt extends BaseAdapter {
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(context);
                 alert.setCancelable(false);
-                alert.setTitle("Delete game record");
-                alert.setMessage("Are you sure to delete this game record?");
+                alert.setTitle("Delete movie record");
+                alert.setMessage("Are you sure to delete this movie record?");
                 alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int o) {
 
-                        db.collection("Games").document(movieList.get(i).getMovID())
+                        db.collection("Movie").document(movieList.get(i).getMovID())
                                 .delete()
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override

@@ -18,6 +18,9 @@ public class Movie implements Serializable, Parcelable {
     Timestamp movReleaseD;
     String image;
 
+    public Movie() {
+    }
+
     public Movie(String movID, String movTit, String movYear, String movRunT, String movLanguage, String movCount, Timestamp movReleaseD, String image) {
         this.movID = movID;
         this.movTit = movTit;
@@ -29,8 +32,7 @@ public class Movie implements Serializable, Parcelable {
         this.image = image;
     }
 
-    public Movie(String id, String title, Timestamp releaseDate, String year, String runTime, String language, String country, String image) {
-    }
+
 
     protected Movie(Parcel in) {
         movID = in.readString();
@@ -41,6 +43,7 @@ public class Movie implements Serializable, Parcelable {
         movCount = in.readString();
         movReleaseD = in.readParcelable(Timestamp.class.getClassLoader());
     }
+
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
         @Override
@@ -118,20 +121,22 @@ public class Movie implements Serializable, Parcelable {
         this.movReleaseD = movReleaseD;
     }
 
+
     @Override
     public int describeContents() {
         return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int i) {
+    public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(movID);
         dest.writeString(movTit);
         dest.writeString(movYear);
         dest.writeString(movRunT);
         dest.writeString(movLanguage);
         dest.writeString(movCount);
-        dest.writeParcelable(movReleaseD, i);
+        dest.writeParcelable(movReleaseD, flags);
+        dest.writeString(image);
     }
 }
 

@@ -35,7 +35,7 @@ public class UpdateMovie extends AppCompatActivity {
 
     EditText movietitle, movie_year, movie_runtime, movie_lang, movie_rdate, movie_country;
     Button updateButton;
-    ImageView image;
+    ImageView updaImage;
     Uri uriImage;
     FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -47,12 +47,12 @@ public class UpdateMovie extends AppCompatActivity {
             // compare the resultCode with the
             // SELECT_PICTURE constant
             if (requestCode == 200) {
-                // Get the url of the image from data
+                // Get the url of the updaImage from data
                 Uri selectedImageUri = data.getData();
                 uriImage = selectedImageUri;
                 if (null != selectedImageUri) {
-                    // update the preview image in the layout
-                    image.setImageURI(selectedImageUri);
+                    // update the preview updaImage in the layout
+                    updaImage.setImageURI(selectedImageUri);
                 }
             }
         }
@@ -71,9 +71,9 @@ public class UpdateMovie extends AppCompatActivity {
         movie_country = findViewById(R.id.movie_country);
 
         updateButton = findViewById(R.id.updateButton);
-        image = findViewById(R.id.image);
+        updaImage = findViewById(R.id.updaImage);
 
-        image.setOnClickListener(new View.OnClickListener() {
+        updaImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent();
@@ -83,11 +83,14 @@ public class UpdateMovie extends AppCompatActivity {
             }
         });
 
+
+
         if (getIntent().getExtras() != null) {
-            Movie movie = (Movie) getIntent().getExtras().getParcelable("Game");
+            Movie movie = (Movie) getIntent().getExtras().getParcelable("Movie");
             String myFormat = "MM/dd/yy";
             SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US);
-            Glide.with(this).load(movie.getImage() != null ? movie.getImage() : R.drawable.ic_baseline_insert_photo_24).into(image);
+
+            Glide.with(getBaseContext()).load(movie.getImage()).into(updaImage);
             movietitle.setText(movie.getMovTit());
             movie_rdate.setText(dateFormat.format(movie.getMovReleaseD().toDate()));
             movie_year.setText(movie.getMovYear());
@@ -105,9 +108,9 @@ public class UpdateMovie extends AppCompatActivity {
                     dialog.show();
 
                     StorageMetadata metadata = new StorageMetadata.Builder()
-                            .setContentType("image/jpeg")
+                            .setContentType("updaImage/jpeg")
                             .build();
-                    StorageReference storageRef = storage.getReference().child("image/" + mUser.getUid() + "/" + dateFormat.format(new Date()));
+                    StorageReference storageRef = storage.getReference().child("updaImage/" + mUser.getUid() + "/" + dateFormat.format(new Date()));
 // Upload file and metadata to the path 'images/mountains.jpg'
                     UploadTask uploadTask = storageRef.putFile(uriImage, metadata);
 
@@ -142,13 +145,13 @@ public class UpdateMovie extends AppCompatActivity {
                                 movie.setImage(downloadUri.toString());
 
                                 FirebaseFirestore db = FirebaseFirestore.getInstance();
-                                db.collection("Games").document(movie.getMovID()).set(movie).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                db.collection("Movie").document(movie.getMovID()).set(movie).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         dialog.dismiss();
                                         if (task.isSuccessful()) {
                                             Toast.makeText(UpdateMovie.this, "Movie successfully updated!", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(UpdateMovie.this, ViewAll.class));
+                                            startActivity(new Intent(UpdateMovie.this, MainActivity.class));
                                         } else {
                                             AlertDialog.Builder alert = new AlertDialog.Builder(UpdateMovie.this);
                                             alert.setCancelable(false);
@@ -163,7 +166,7 @@ public class UpdateMovie extends AppCompatActivity {
                                 // Handle failures
                                 AlertDialog.Builder alert = new AlertDialog.Builder(getApplicationContext());
                                 alert.setCancelable(false);
-                                alert.setTitle("Error Uploading image!");
+                                alert.setTitle("Error Uploading movie Image!");
                                 alert.setMessage(task.getException().getLocalizedMessage());
                                 alert.setPositiveButton("Okay", null);
                                 alert.show();
@@ -180,4 +183,14 @@ public class UpdateMovie extends AppCompatActivity {
 
         }
     }
+//
+//    @GlideModule
+//    public class MyAppGlideModule extends AppGlideModule {
+//        @Override
+//        public void registerComponents(Context context, Registry registry) {
+//            // Register FirebaseImageLoader to handle StorageReference
+//            registry.append(StorageReference.class, InputStream.class,
+//                    new FirebaseImageLoader.Factory());
+//        }
+//    }
 }

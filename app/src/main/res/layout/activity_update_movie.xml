@@ -23,13 +23,23 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/updatePhotoImageView"
+            android:id="@+id/updaImage"
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:scaleType="centerCrop"
             android:layout_gravity="center"
             android:padding="5dp"
+            android:visibility="visible"
             android:src="@drawable/ic_baseline_insert_photo_24" />
+
+<!--        <ImageView-->
+<!--            android:id="@+id/updaImage"-->
+<!--            android:layout_width="140dp"-->
+<!--            android:layout_height="140dp"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:padding="5dp"-->
+<!--            android:src="@drawable/ic_baseline_insert_photo_24" />-->
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/movie_idLay"
