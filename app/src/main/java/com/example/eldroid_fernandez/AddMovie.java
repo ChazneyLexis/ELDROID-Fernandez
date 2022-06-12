@@ -102,7 +102,7 @@ public class AddMovie extends AppCompatActivity {
 
     private void addData(String Title, Timestamp ReleaseDate, String Year, String RunTime, String Language, String Country) {
         ProgressDialog dialog = new ProgressDialog(this);
-        dialog.setMessage("Adding game, please wait...");
+        dialog.setMessage("Adding movie, please wait...");
         dialog.setCancelable(false);
         dialog.show();
         FirebaseFirestore db = FirebaseFirestore.getInstance();

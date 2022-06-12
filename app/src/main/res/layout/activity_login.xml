@@ -104,9 +104,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="center"
-                android:backgroundTint="@color/white"
                 android:fontFamily="@font/nexablack"
-                android:text="Register" />
+                android:text="Register"
+                android:textColor="@color/teal_700"/>
 
         </RelativeLayout>
 

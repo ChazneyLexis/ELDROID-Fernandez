@@ -39,6 +39,10 @@ public class UpdateMovie extends AppCompatActivity {
     Uri uriImage;
     FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
 
+    FirebaseStorage storage;
+    StorageReference storageReference;
+    String url = "https://m.media-amazon.com/images/M/MV5BNTkyOGVjMGEtNmQzZi00NzFlLTlhOWQtODYyMDc2ZGJmYzFhXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg";
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -63,6 +67,10 @@ public class UpdateMovie extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_movie);
 
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference().child("image/");
+
+
         movietitle = findViewById(R.id.movietitle);
         movie_rdate = (EditText) findViewById(R.id.movie_rdate);
         movie_year = findViewById(R.id.movie_year);
@@ -71,6 +79,7 @@ public class UpdateMovie extends AppCompatActivity {
         movie_country = findViewById(R.id.movie_country);
 
         updateButton = findViewById(R.id.updateButton);
+
         updaImage = findViewById(R.id.updaImage);
 
         updaImage.setOnClickListener(new View.OnClickListener() {
@@ -85,12 +94,12 @@ public class UpdateMovie extends AppCompatActivity {
 
 
 
+
         if (getIntent().getExtras() != null) {
             Movie movie = (Movie) getIntent().getExtras().getParcelable("Movie");
             String myFormat = "MM/dd/yy";
             SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US);
-
-            Glide.with(getBaseContext()).load(movie.getImage()).into(updaImage);
+            Glide.with(getBaseContext()).load(url).placeholder(R.drawable.ic_baseline_insert_photo_24).into(updaImage);
             movietitle.setText(movie.getMovTit());
             movie_rdate.setText(dateFormat.format(movie.getMovReleaseD().toDate()));
             movie_year.setText(movie.getMovYear());
@@ -103,7 +112,7 @@ public class UpdateMovie extends AppCompatActivity {
                 public void onClick(View view) {
                     FirebaseStorage storage = FirebaseStorage.getInstance();
                     ProgressDialog dialog = new ProgressDialog(UpdateMovie.this);
-                    dialog.setMessage("Updating game, please wait...");
+                    dialog.setMessage("Updating movie, please wait...");
                     dialog.setCancelable(false);
                     dialog.show();
 
@@ -183,14 +192,6 @@ public class UpdateMovie extends AppCompatActivity {
 
         }
     }
-//
-//    @GlideModule
-//    public class MyAppGlideModule extends AppGlideModule {
-//        @Override
-//        public void registerComponents(Context context, Registry registry) {
-//            // Register FirebaseImageLoader to handle StorageReference
-//            registry.append(StorageReference.class, InputStream.class,
-//                    new FirebaseImageLoader.Factory());
-//        }
-//    }
+
+
 }

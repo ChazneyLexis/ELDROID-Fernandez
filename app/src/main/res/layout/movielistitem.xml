@@ -3,12 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/teal_700"
     android:padding="10dp">
 
     <RelativeLayout
         android:id="@+id/topRL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/teal_700"
+
         android:padding="5dp">
 
         <Button
@@ -17,7 +20,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:background="@null"
-            android:backgroundTint="@color/teal_700"
+            android:textColor="@color/teal_700"
+            android:backgroundTint="@color/white"
             android:text="Delete" />
 
         <Button
@@ -26,7 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:background="@null"
-            android:backgroundTint="@color/teal_700"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/teal_700"
             android:text="Edit" />
 
     </RelativeLayout>
@@ -36,12 +41,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/topRL"
+        android:backgroundTint="@color/teal_700"
         android:gravity="center">
 
         <LinearLayout
             android:id="@+id/imageLL"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/teal_700"
             android:orientation="vertical">
 
             <ImageView
@@ -57,7 +64,8 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imageLL"
-            android:gravity="start"
+            android:backgroundTint="@color/teal_700"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="5dp">
 
